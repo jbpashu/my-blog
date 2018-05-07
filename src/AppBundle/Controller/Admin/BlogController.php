@@ -176,11 +176,15 @@ class BlogController extends Controller
         // Delete the tags associated with this blog post. This is done automatically
         // by Doctrine, except for SQLite (the database used in this application)
         // because foreign key support is not enabled by default in SQLite
-        $post->getTags()->clear();
+        //$post->getTags()->clear();
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($post);
-        $em->flush();
+//        $em = $this->getDoctrine()->getManager();
+//        $em->remove($post);
+//        $em->flush();
+	    $post->setIsActive(false);
+	    $em = $this->getDoctrine()->getManager();
+	    $em->persist($post);
+	    $em->flush();
 
         $this->addFlash('success', 'post.deleted_successfully');
 

@@ -14,6 +14,7 @@
             <p class="post-metadata">
                 <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</span>
                 <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
+                <span class="metadata"><i class="fa fa-eye"></i> {% if post.views %} {{ post.views }} {% else %} 0 {%endif%}</span>
             </p>
 
             {{ post.summary|md2html }}
@@ -34,6 +35,6 @@
 {% block sidebar %}
     {{ parent() }}
 
-    {{ show_source_code(_self) }}
-    {{ include('blog/_rss.html.twig') }}
+    {#{ show_source_code(_self) }}
+    {{ include('blog/_rss.html.twig') }#}
 {% endblock %}

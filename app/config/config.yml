@@ -83,3 +83,54 @@ doctrine:
 swiftmailer:
     url : '%env(MAILER_URL)%'
     spool: { type: memory }
+
+stfalcon_tinymce:
+    include_jquery: true
+    tinymce_jquery: true
+    selector: ".tinymce"
+    language: %locale%
+
+nelmio_api_doc: ~
+
+nelmio_cors:
+    defaults:
+        allow_credentials: false
+        allow_origin: ['*']
+        allow_headers: ['*']
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        max_age: 3600
+        hosts: []
+        origin_regex: false
+
+# FOSRest Configuration
+fos_rest:
+    body_listener: true
+    format_listener:
+        rules:
+            - { path: '^/', priorities: ['html', 'json',], fallback_format: json, prefer_extension: false }
+    param_fetcher_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+
+fos_rest:
+    body_listener: true
+    routing_loader:
+        default_format: json                            # All responses should be JSON formated
+        include_format: false                           # We do not include format in request, so that all responses
+                                                        # will eventually be JSON formated
+    format_listener:
+        rules:
+            - {  path: '^/', priorities: ['html', 'json'], fallback_format: json, prefer_extension: false }
+    param_fetcher_listener: true
+    view:
+        view_response_listener: true
+        formats:
+            json: true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig

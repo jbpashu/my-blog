@@ -127,7 +127,7 @@
             </trans-unit>
             <trans-unit id="delete_post_modal.body">
                 <source>delete_post_modal.body</source>
-                <target>This action cannot be undone.</target>
+                <target>This will deativate the post.</target>
             </trans-unit>
             <trans-unit id="label.delete_post">
                 <source>label.delete_post</source>

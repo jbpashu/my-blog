@@ -10,6 +10,7 @@
         button_label: 'action.save'|trans,
         include_back_to_home_link: true,
     }, with_context = false) }}
+    {{ tinymce_init() }}
 {% endblock %}
 
 {% block sidebar %}
@@ -25,5 +26,5 @@
 
     {{ parent() }}
 
-    {{ show_source_code(_self) }}
+    {#{ show_source_code(_self) }#}
 {% endblock %}

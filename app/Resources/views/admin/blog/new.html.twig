@@ -20,10 +20,11 @@
             <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'action.back_to_list'|trans }}
         </a>
     {{ form_end(form) }}
+    {{ tinymce_init() }}
 {% endblock %}
 
 {% block sidebar %}
     {{ parent() }}
 
-    {{ show_source_code(_self) }}
+    {#{ show_source_code(_self) }#}
 {% endblock %}

@@ -51,7 +51,7 @@ class PostType extends AbstractType
                 'label' => 'label.summary',
             ])
             ->add('content', null, [
-                'attr' => ['rows' => 20],
+                'attr' => ['rows' => 20, 'class' => 'tinymce'],
                 'label' => 'label.content',
             ])
             ->add('publishedAt', DateTimePickerType::class, [
