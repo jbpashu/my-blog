@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/var/www/symfony-demo1/app/Resources/views/admin/blog/index.html.twig</file>
+            <file>file:/var/www/symfony-demo1/src/AppBundle/Controller/BlogController.php</file>
+            <file>file:/var/www/symfony-demo1/src/AppBundle/Repository/PostRepository.php</file>
+            <file>file:/var/www/symfony-demo1/web/build/css/app.css</file>
+            <file>file:/var/www/symfony-demo1/app/Resources/views/admin/layout.html.twig</file>
+            <file>file:/var/www/symfony-demo1/composer.json</file>
+            <file>file:/var/www/symfony-demo1/app/Resources/views/admin/blog/edit.html.twig</file>
+            <file>file:/var/www/symfony-demo1/src/AppBundle/Form/PostType.php</file>
+            <file>file:/var/www/symfony-demo1/src/AppBundle/Controller/Admin/BlogController.php</file>
+        </group>
+    </open-files>
+</project-private>

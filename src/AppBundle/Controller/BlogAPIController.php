@@ -26,14 +26,21 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-use FOS\RestBundle\Controller\{ Annotations, FOSRestController };
+use FOS\RestBundle\Controller\Annotations;
+use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
+//use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Util\Codes;
+use FOS\RestBundle\Request\ParamFetcherInterface;
+use FOS\RestBundle\View\RouteRedirectView;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Controller used to manage blog contents in the public part of the site.
  *
- * @Route("/blog")
+ * @Route("api/blogs")
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -41,24 +48,37 @@ use FOS\RestBundle\View\View;
 class BlogAPIController extends FOSRestController {
 
     /**
-     * @Route("/", defaults={"page": "1", "_format"="html"}, name="blog_index")
-     * @Route("/rss.xml", defaults={"page": "1", "_format"="xml"}, name="blog_rss")
-     * @Route("/page/{page}", defaults={"_format"="html"}, requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
-     * @Method("GET")
-     * @Cache(smaxage="10")
+     * get blog list
      *
-     * NOTE: For standard formats, Symfony will also automatically choose the best
-     * Content-Type header for the response.
-     * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
+     * This function returns list of blogs
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *   }
+     * )
+     *
+     * @Annotations\View()
+     *
+     * @return array
+     * @Route("/list.{_format}")
+     * @return array returns array containing agent details
+     *
      */
-    public function indexAction($page, $_format) {
+    public function getBlogListAction() {
         $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository(Post::class)->findLatest($page);
-
-        // Every template name also has two extensions that specify the format and
-        // engine for that template.
-        // See https://symfony.com/doc/current/templating.html#template-suffix
-        return $this->render('blog/index.' . $_format . '.twig', ['posts' => $posts]);
+        $posts = $em->getRepository(Post::class)->findAll();
+        
+        $view = View::create();
+            
+        if($posts) {
+            $view->setStatusCode(200)->setData($posts);  
+        } else {
+            $view->setStatusCode(404)->setData(['errorMessage'=>'No Posts found']);  
+        }
+        
+        return $this->get('fos_rest.view_handler')->handle($view); 
     }
 
     /**
