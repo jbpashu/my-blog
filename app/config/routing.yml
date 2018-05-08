@@ -25,11 +25,6 @@ homepage:
         _controller: FrameworkBundle:Template:template
         template:    default/homepage.html.twig
         _locale:     '%locale%'
-#app.swagger_ui:
-#    path: /api/doc
-#    methods: GET
-#    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
-#app.swagger:
-#    path: /api/doc.json
-#    methods: GET
-#    defaults: { _controller: nelmio_api_doc.controller.swagger }
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

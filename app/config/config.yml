@@ -14,7 +14,7 @@ imports:
 # See https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     # This parameter defines the codes of the locales (languages) enabled in the application
-    app_locales: en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl|hr|zh_CN
+    app_locales: en
     app.notifications.email_sender: anonymous@example.com
 
 # Basic configuration for the Symfony framework features
@@ -113,24 +113,3 @@ fos_rest:
         view_response_listener: 'force'
         formats:
             json: true
-
-fos_rest:
-    body_listener: true
-    routing_loader:
-        default_format: json                            # All responses should be JSON formated
-        include_format: false                           # We do not include format in request, so that all responses
-                                                        # will eventually be JSON formated
-    format_listener:
-        rules:
-            - {  path: '^/', priorities: ['html', 'json'], fallback_format: json, prefer_extension: false }
-    param_fetcher_listener: true
-    view:
-        view_response_listener: true
-        formats:
-            json: true
-        templating_formats:
-            html: true
-        force_redirects:
-            html: true
-        failed_validation: HTTP_BAD_REQUEST
-        default_engine: twig
