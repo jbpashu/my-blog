@@ -124,7 +124,7 @@ class Post {
      *
      * @ORM\Column(type="integer", nullable=true, options={"default" : 0})
      */
-    private $views;
+    private $viewCount;
 
     /**
      * @var boolean
@@ -240,29 +240,6 @@ class Post {
     }
 
     /**
-     * Set views
-     *
-     * @param integer $views
-     *
-     * @return Post
-     */
-    public function setViews($views) {
-        $this->views = $views;
-
-        return $this;
-    }
-
-    /**
-     * Get views
-     *
-     * @return integer
-     */
-    public function getViews() {
-        return $this->views;
-    }
-
-
-    /**
      * Set isActive
      *
      * @param boolean $isActive
@@ -284,5 +261,29 @@ class Post {
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Set viewCount
+     *
+     * @param integer $viewCount
+     *
+     * @return Post
+     */
+    public function setViewCount($viewCount)
+    {
+        $this->viewCount = $viewCount;
+
+        return $this;
+    }
+
+    /**
+     * Get viewCount
+     *
+     * @return integer
+     */
+    public function getViewCount()
+    {
+        return $this->viewCount;
     }
 }

@@ -56,6 +56,15 @@ There are two API endpoints have been created to check API documents please chec
 1. GET /{_locale}/api/blogs/list.{_format} -  This will give you a list of all the blog created.
 2. GET /{_locale}/api/blogs/posts/{id} - This will give you a detailed view of the blog you just need to pass the blog id.
 
+Use API Doc Sandbox to test these APIs in browser.
+
+You can use curl also to hit above REST APIs:
+1. Get list of all blogs:
+curl -X "GET" -H "Content-type:\ application/x-www-form-urlencoded" http://127.0.0.1:8000/en/api/blogs/list.json
+
+2. Get info of specific blog by ID:
+curl -X "GET" -H "Content-type:\ application/x-www-form-urlencoded" http://127.0.0.1:8000/en/api/blogs/posts/3/info.json
+
 Unit Testing
 ---------------
 You can perform unit testing also on this project using following commands:

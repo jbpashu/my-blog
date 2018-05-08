@@ -95,6 +95,7 @@ class BlogControllerTest extends WebTestCase
             'post[title]' => $postTitle,
             'post[summary]' => $postSummary,
             'post[content]' => $postContent,
+            'post[isActive]'=> true,
         ]);
         $client->submit($form);
 

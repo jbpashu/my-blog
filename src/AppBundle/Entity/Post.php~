@@ -124,7 +124,7 @@ class Post {
      *
      * @ORM\Column(type="integer", nullable=true, options={"default" : 0})
      */
-    private $views;
+    private $viewCount;
 
     /**
      * @var boolean
@@ -261,4 +261,28 @@ class Post {
         return $this->views;
     }
 
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Post
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
 }

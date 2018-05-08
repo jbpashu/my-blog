@@ -8,7 +8,7 @@
     <p class="post-metadata">
         <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</span>
         <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
-        <span class="metadata"><i class="fa fa-eye"></i> {{ post.views }}</span>
+        <span class="metadata"><i class="fa fa-eye"></i> {{ post.viewCount }}</span>
     </p>
 
     {{ post.content|md2html }}

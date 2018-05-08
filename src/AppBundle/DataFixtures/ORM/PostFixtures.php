@@ -50,6 +50,8 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
             $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
+            $post->setIsActive(true);
+            $post->setViewCount(0);
 
             // Ensure that the first post is written by Jane Doe to simplify tests
             // "References" are the way to share objects between fixtures defined

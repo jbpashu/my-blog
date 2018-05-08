@@ -21,75 +21,75 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  */
 class BlogAPIController extends FOSRestController {
 
-	/**
-	 * get blog list
-	 *
-	 * This function returns list of blog
-	 *
-	 * @ApiDoc(
-	 *   resource = true,
-	 *   statusCodes = {
-	 *     200 = "Returned when successful",
-	 *     404 = "When No Blog found"
-	 *   }
-	 * )
-	 *
-	 * @Annotations\View()
-	 *
-	 * @Route("/list.{_format}")
-	 * @Method("GET")
-	 * @return array returns array containing blog details
-	 *
-	 */
-	public function getBlogListAction( Request $request, $_format ) {
-		$em    = $this->getDoctrine()->getManager();
-		$posts = $em->getRepository( Post::class )->findLatestBlogPosts();
+    /**
+     * get blog list
+     *
+     * This function returns list of blog
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "When No Blog found"
+     *   }
+     * )
+     *
+     * @Annotations\View()
+     *
+     * @Route("/list.{_format}")
+     * @Method("GET")
+     * @return array returns array containing blog details
+     *
+     */
+    public function getBlogListAction(Request $request, $_format) {
+        $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository(Post::class)->findLatestBlogPosts();
 
-		$view = View::create();
+        $view = View::create();
 
-		if( $posts ) {
-			$view->setStatusCode( 200 )->setData( $posts )->setFormat( $_format );
-		} else {
-			$view->setStatusCode( 404 )->setData( [ 'errorMessage' => 'No Posts found' ] );
-		}
+        if ($posts) {
+            $view->setStatusCode(200)->setData($posts)->setFormat($_format);
+        } else {
+            $view->setStatusCode(404)->setData(['errorMessage' => 'No Posts found']);
+        }
 
-		return $this->get( 'fos_rest.view_handler' )->handle( $view );
-	}
+        return $this->get('fos_rest.view_handler')->handle($view);
+    }
 
-	/**
-	 * Get single blog post detaild by id
-	 *
-	 * @Route("/posts/{id}")
-	 * @Method("GET")
-	 *
-	 *
-	 * @ApiDoc(
-	 *   resource = true,
-	 *   statusCodes = {
-	 *     200 = "Returned when successful",
-	 *     404 = "When No Blog details found"
-	 *   }
-	 * )
-	 *
-	 * @Annotations\View()
-	 *
-	 * @return array returns array containing blog details
-	 *
-	 */
-	public function getPostAction( Post $post ) {
-		$view = View::create();
-		if( $post->getIsActive() ) {
-			$post->setViews( $post->getViews() + 1 );
-			$em = $this->getDoctrine()->getManager();
-			$em->persist( $post );
-			$em->flush();
+    /**
+     * Get single blog post detaild by id
+     *
+     * @Route("/posts/{id}/info.{_format}")
+     * @Method("GET")
+     *
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "When No Blog details found"
+     *   }
+     * )
+     *
+     * @Annotations\View()
+     *
+     * @return array returns array containing blog details
+     *
+     */
+    public function getPostAction(Post $post) {
+        $view = View::create();
+        if ($post->getIsActive()) {
+            $post->setViews($post->getViews() + 1);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
 
-			$view->setStatusCode( 200 )->setData( $post )->setFormat( 'json' );
-		} else {
-			$view->setStatusCode( 404 )->setData( [ 'errorMessage' => 'Posts does not exist' ] );
-		}
+            $view->setStatusCode(200)->setData($post)->setFormat('json');
+        } else {
+            $view->setStatusCode(404)->setData(['errorMessage' => 'Posts does not exist']);
+        }
 
-		return $this->get( 'fos_rest.view_handler' )->handle( $view );
-	}
+        return $this->get('fos_rest.view_handler')->handle($view);
+    }
 
 }
