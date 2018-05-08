@@ -79,7 +79,7 @@ class BlogAPIController extends FOSRestController {
     public function getPostAction(Post $post) {
         $view = View::create();
         if ($post->getIsActive()) {
-            $post->setViews($post->getViews() + 1);
+            $post->setViewCount($post->getViewCount() + 1);
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();

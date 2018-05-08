@@ -59,7 +59,7 @@ class BlogController extends Controller {
 		if( 'dev' === $this->getParameter( 'kernel.environment' ) ) {
 			dump( $post, $this->getUser(), new \DateTime() );
 		}
-		$post->setViews( $post->getViews() + 1 );
+		$post->setViewCount( $post->getViewCount() + 1 );
 		$em = $this->getDoctrine()->getManager();
 		$em->persist( $post );
 		$em->flush();
