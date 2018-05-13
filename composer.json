@@ -5,7 +5,7 @@
     "description": "Symfony Demo Application",
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle/",
+            "AppBundle\\": "src/AppBundle/"
         },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
